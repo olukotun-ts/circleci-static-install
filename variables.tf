@@ -1,3 +1,7 @@
+variable "project" {
+  description = "Name of project on GCP"
+  default     = "cci-eval"
+}
 variable "region" {
   description = "Region where instances should be created"
   default     = "us-west1"

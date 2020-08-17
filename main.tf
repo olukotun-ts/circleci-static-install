@@ -1,5 +1,5 @@
 provider "google" {
-  project = "cci-eval"
+  project = "${var.project}"
   region  = "${var.region}"
   zone    = "${var.zone}"
 }
@@ -40,7 +40,6 @@ resource "google_compute_firewall" "egress_rules" {
   }
 }
 
-
 resource "google_compute_instance" "service_vm" {
   name = "circleci-service-vm"
   machine_type = "${var.machine_type}"
@@ -63,6 +62,11 @@ resource "google_compute_instance" "service_vm" {
   }
 }
 
+output "service-ip" {
+  value = "${google_compute_instance.service_vm.network_interface.0.access_config.0.nat_ip}"
+}
+
+/*
 resource "google_compute_instance" "nomad_vm" {
   name = "circleci-nomad-vm"
   machine_type  = "${var.machine_type}"
@@ -85,9 +89,7 @@ resource "google_compute_instance" "nomad_vm" {
   }
 }
 
-output "service-ip" {
-  value = "${google_compute_instance.service_vm.network_interface.0.access_config.0.nat_ip}"
-}
 output "nomad-ip" {
   value = "${google_compute_instance.nomad_vm.network_interface.0.access_config.0.nat_ip}"
 }
+*/
