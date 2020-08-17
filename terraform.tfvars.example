@@ -1,0 +1,6 @@
+region        = ""
+zone          = ""
+machine_type  = ""
+os_image      = ""
+disk_size     = ""
+ssh_keys      = ""

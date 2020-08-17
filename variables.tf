@@ -10,6 +10,7 @@ variable "zone" {
 
 variable "ssh_keys" {
   description = "Path to SSH key for connecting to instances" 
+  default     = "~/.ssh"
 }
 
 variable "machine_type" {
@@ -19,10 +20,10 @@ variable "machine_type" {
 
 variable "os_image" {
   description = ""
-  default     = "ubuntu-os-cloud/ubuntu-1404-lts"
+  default     = "ubuntu-1604-lts"
 }
 
 variable "disk_size" {
   description = ""
-  default     = "70"
+  default     = "64"
 }
