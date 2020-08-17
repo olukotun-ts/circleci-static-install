@@ -25,5 +25,5 @@ variable "os_image" {
 
 variable "disk_size" {
   description = ""
-  default     = "64"
+  default     = "100"
 }

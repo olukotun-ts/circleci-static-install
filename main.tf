@@ -42,7 +42,7 @@ resource "google_compute_firewall" "egress_rules" {
 
 
 resource "google_compute_instance" "service_vm" {
-  name = "circleci-service"
+  name = "circleci-service-vm"
   machine_type = "${var.machine_type}"
   allow_stopping_for_update = "true"
   metadata = {
@@ -64,7 +64,7 @@ resource "google_compute_instance" "service_vm" {
 }
 
 resource "google_compute_instance" "nomad_vm" {
-  name = "circleci-build"
+  name = "circleci-nomad-vm"
   machine_type  = "${var.machine_type}"
   allow_stopping_for_update = "true"
   metadata = {
