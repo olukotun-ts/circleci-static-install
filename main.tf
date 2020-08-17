@@ -41,7 +41,7 @@ resource "google_compute_firewall" "egress_rules" {
 }
 
 
-resource "google_compute_instance" "service_agent" {
+resource "google_compute_instance" "service_vm" {
   name = "circleci-service"
   machine_type = "${var.machine_type}"
   allow_stopping_for_update = "true"
@@ -63,12 +63,7 @@ resource "google_compute_instance" "service_agent" {
   }
 }
 
-output "service-ip" {
-  value = "${google_compute_instance.service_agent.network_interface.0.access_config.0.nat_ip}"
-}
-
-/*
-resource "google_compute_instance" "build_agent" {
+resource "google_compute_instance" "nomad_vm" {
   name = "circleci-build"
   machine_type  = "${var.machine_type}"
   allow_stopping_for_update = "true"
@@ -90,7 +85,9 @@ resource "google_compute_instance" "build_agent" {
   }
 }
 
-output "build-ip" {
-  value = "${google_compute_instance.build_agent.network_interface.0.access_config.0.nat_ip}"
+output "service-ip" {
+  value = "${google_compute_instance.service_vm.network_interface.0.access_config.0.nat_ip}"
 }
-*/
+output "nomad-ip" {
+  value = "${google_compute_instance.nomad_vm.network_interface.0.access_config.0.nat_ip}"
+}
